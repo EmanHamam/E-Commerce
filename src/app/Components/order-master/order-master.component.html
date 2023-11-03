@@ -1,0 +1,55 @@
+
+
+<!-- <input type="text" class="form-control m-3" #ClientName name="" id=""> -->
+<div class="m-3">
+  <label for="catsel">Select Category</label>
+  <select  class="form-select" name="cat" id="catsel"  [(ngModel)]="selectedCategory">
+    <option value="0">All</option>
+    <option *ngFor="let cat of categories" [value]="cat.ID">{{cat.Name}}</option>
+  </select>
+</div>
+<hr>
+<app-products [recivedSelectedCategoryId]="selectedCategory" (changedOrderTotalPrice)="updateTotalPrice($event)"(shoppingCartItem)="ShoppingCartItemSend($event)" ></app-products>
+<!-- <app-cart [recievedprd]="reciievedprd"></app-cart> -->
+<hr>
+<h2>
+
+  Total Price : {{ recievedOrderTotalPrice|currency:'EGP'}}
+</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">#Items</th>
+      <th scope="col">Image</th>
+      <th scope="col">Remove</th>
+
+
+    </tr>
+  </thead>
+  <tbody> 
+    <tr *ngFor="let prd of reciievedprd ;let idx=index">
+
+    <td>{{prd.ProductID}}</td>
+    <td>{{prd.ProductName}}</td>
+     <td>{{prd.Unitprice}}</td>
+     <td>
+      <div>
+      <div class="input-group mb-3">
+        <!-- <button class="btn btn-danger" type="button" (click)="SubItem()" [disabled]="+quantity.value==0">-</button> -->
+        <!-- <input type="text" [(ngModel)]="prd.prdQuatity" [value]="prd.Selectedquantity" #quantity > -->
+        <!-- <button class="btn btn-success" type="button" (click)="AddItem()" [disabled]="+quantity.value >= prd.prdQuatity">+</button> -->
+      </div>
+    </div>
+    </td>
+     <td><img [src]="prd.Img" class="rounded-circle img-fluid text-centre" height="50px" width="50px"></td>
+    <td><button type="button" class="btn btn-danger" (click)="RemoveItem(idx)">Remove</button></td>
+     
+   </tr>
+   
+ </tbody>
+</table>
+<button class="btn btn-success" type="button" (click)="Cofirm()" >Confirm</button>
+

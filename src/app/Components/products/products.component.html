@@ -1,0 +1,112 @@
+<section id="page-header">
+  <h2>#stayhome</h2>
+  <p>Save more with couppons & up to 70% off!</p>
+</section>
+<div class="category">
+
+  <div class="category-header">
+    <!-- <h2>{{selectedCat}}</h2> -->
+  </div>
+  <div class="category-select">
+    Select Category :
+    <select [(ngModel)]="selectedCat">
+      <option value="0">All</option>
+      <option *ngFor="let cat of categories" [value]="cat.ID">
+        {{ cat.Name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<section id="product1" class="section-p1">
+  <ng-container>
+    <div class="pro-container">
+      <div class="pro" *ngFor="let prd of filteredProducts; let idx = index">
+                <!-- <div *ngIf="selectedCat == prd.cateogryID || selectedCat == 0"> -->
+          <img [src]="prd.img" />
+          <div class="des">
+            <span class="brand"
+              >{{ prd.brand }}
+
+              <span>
+                <ng-container [ngSwitch]="prd.quantity">
+                  <div *ngSwitchCase="0" class="outStock">
+                    <small> Out of stock</small>
+                  </div>
+                  <div *ngSwitchDefault class="inStock">
+                    <small> In stock </small>
+                  </div>
+                </ng-container>
+              </span>
+            </span>
+            <h5>{{ prd.name }}</h5>
+            <div class="star">
+              <span *ngFor="let star of prd.fullStars">
+                <fa-icon [icon]="fstar"></fa-icon>
+              </span>
+              <span *ngFor="let star of prd.emptyStars">
+                <fa-icon [icon]="estar"></fa-icon>
+              </span>
+            </div>
+            <h4>{{ prd.price | currency }}</h4>
+          </div>
+          <button id="btncard" (click)="toggleWishlist(prd, idx)">
+            <fa-icon
+              [icon]="prd.isFavSolid ? solidHeart : regularHeart"
+              class="fav"
+            ></fa-icon>
+          </button>
+          <button id="btncard" (click)="prdService.openProductDetails(prd.id)">
+            <fa-icon [icon]="details" class="details"> </fa-icon>
+          </button>
+          <button
+            id="btncard"
+            (click)="
+              prdService.ShoppingCartItemSend(
+                {
+                  ProductID: prd.id,
+                  ProductName: prd.name,
+                  Unitprice: prd.price,
+                  Img: prd.img,
+                  prdQuatity: prd.quantity,
+                  Subtotal: 1 * prd.price,
+                  Selectedquantity: 1,
+                  inTheCart: true
+                },
+                idx,
+                prd.inTheCart
+              )
+            "
+            [disabled]="prd.quantity == 0"
+          >
+            <fa-icon [icon]="cartIcon" class="cart"></fa-icon>
+          </button>
+      <!-- <a href="#"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></a> -->
+      <!-- <a href="#"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></a> -->
+      
+          <!-- <a href="#"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></a> -->
+      
+        </div>
+      </div>
+  
+  </ng-container>
+</section>
+
+
+<section id="pagination" class="section-p1">
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <a href="#"><fa-icon [icon]="arrow"></fa-icon> </a>
+</section>
+<section id="Newsletter" class="section-p1 section-m1">
+  <div class="newstext">
+    <h4>Sign Up For Newsletters</h4>
+    <p>
+      Get E-mail updates about our latest shop and <span>special offers.</span>
+    </p>
+  </div>
+  <div class="form">
+    <input type="email" name="" id="" placeholder="Your Email Address" />
+    <button class="normal">Sign Up</button>
+  </div>
+</section>

@@ -1,0 +1,120 @@
+<section id="prdDetails" class="section-p1">
+    <div class="single-pro-image">
+        <img [src]="product.img" width="100%" height="543.67" id="mainImg" alt="">
+
+        <div class="small-img-group">
+          <div class="small-img-col">
+            <img [src]="prdDatails?.mainImg" width="100%" height="130px" class="small-img" alt="" (click)="updateMainImage(prdDatails?.mainImg||'')">
+        </div>
+        <div class="small-img-col">
+            <img [src]="prdDatails?.smallImg1" width="100%" height="130px" class="small-img" alt="" (click)="updateMainImage(prdDatails?.smallImg1||'')">
+        </div>
+        <div class="small-img-col">
+            <img [src]="prdDatails?.smallImg2" width="100%" height="130px" class="small-img" alt="" (click)="updateMainImage(prdDatails?.smallImg2||'')">
+        </div>
+        <div class="small-img-col">
+            <img [src]="prdDatails?.smallImg3" width="100%" height="130px" class="small-img" alt="" (click)="updateMainImage(prdDatails?.smallImg3||'')">
+        </div>
+        
+        </div>
+    </div>
+    <div class="single-pro-details">
+    <h6>Home / T-Shirt</h6>
+    <h4>Man's Fashion T shirt</h4>
+
+    <h2>{{product.price|currency}}</h2>
+
+    <select name="" id="">
+        <option value="">Select Size</option>
+        <option value="">XXL</option>
+        <option value="">XL</option>
+        <option value="">Large</option>
+        <option value="">Medium</option>
+        <option value="">Small</option>
+
+
+    </select>
+    <input type="number" name="" id="" value="1">
+    <button class="normal" [disabled]="product.quantity==0"
+    (click)="addtoCart(product,product.id,product.inTheCart)" >        
+      <span><fa-icon [icon]="shoppingBag" class="cart"></fa-icon></span> Add To Cart</button>
+      <button class="normal" 
+      (click)="addtoWishlist(product,product.id)" >        
+        <span><fa-icon [icon]="regularHeart" class="cart"></fa-icon></span> Add To Wishlist</button>
+    <h4>Product Details </h4>
+    <span>
+       The Gildan Ultra Cotton T-shirt is made frome substantial 6.0 oz . per sq.yd.
+       .fabric constructed from 100% cotton.
+       this classic fit preshrunk jersey knit provides unmatched comfort with each wear.
+       Featuring a taped neck and sholder . and a seamless double-needle collar,and
+       available in a range of colors . it offers it all in the ultimate head-turing package.
+    </span>
+    <div class="star">
+      <span *ngFor="let star of  product.fullStars">
+        <fa-icon [icon]="fstar"></fa-icon>
+     
+      </span>
+      <span *ngFor="let star of product.emptyStars">
+        <fa-icon [icon]="estar"></fa-icon>
+      </span>
+
+    </div>
+      <div class="count text-black-50">({{product.rating.numOfReviews}} reviews)
+      </div>
+     
+
+  
+    <div class="pag">
+      <a type="button" (click)="goToPrevPrd()"  class="previous round">&laquo;</a>
+      <a type="button" (click)="goToNextPrd()"  class="next round">&raquo;</a>
+    </div>
+
+    </div>
+</section>
+
+<section id="product1" class="section-p1">
+    <h2>Featured Products</h2>
+    <p>Summer Collection New Modern Design</p>
+    <div class="pro-container" >
+
+      <div class="pro" *ngFor="let prd of products ; let idx=index">
+        <img [src]="prd.img" />
+        <div class="des">
+          <span class="brand">{{prd.brand}}
+          <span>
+            <ng-container [ngSwitch]="prd.quantity">
+              
+              <div *ngSwitchCase="0" class="outStock"><small> Out of stock</small></div>
+              <div *ngSwitchDefault class="inStock"><small> In stock </small></div>
+              
+            </ng-container>
+          </span>
+        </span>
+          <h5> {{prd.name}}</h5>
+          <div class="star">
+            <span *ngFor="let star of  prd.fullStars">
+              <fa-icon [icon]="fstar"></fa-icon>
+           
+            </span>
+            <span *ngFor="let star of prd.emptyStars">
+              <fa-icon [icon]="estar"></fa-icon>
+            </span>
+          </div>
+          <h4>{{prd.price|currency}}</h4>
+        </div>
+        
+      </div>
+      </div>
+  </section>
+
+<section id="Newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+        <h4>Sign Up For Newsletters</h4>
+        <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+    <div class="form">
+        <input type="email" name="" id="" placeholder="Your Email Address">
+        <button class="normal">Sign Up</button>
+
+    </div>
+</section>

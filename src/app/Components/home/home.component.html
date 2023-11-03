@@ -1,0 +1,165 @@
+<section id="hero">
+  <h4>Trade-in-offer</h4>
+  <h2>Super value deals</h2>
+  <h1>On all products</h1>
+  <p>Save more with couppons & up to 70% off!</p>
+  <button routerLink="/Products">Shop Now</button>
+</section>
+
+
+
+<section id="feature" class="section-p1" >
+  <div class="fe-box" *ngFor="let feature of features">
+    <img [src]="feature.img" />
+    <h6>{{feature.title}}</h6>
+  </div>
+  
+</section>
+
+
+<section id="product1" class="section-p1">
+  <h2 clsss="title">Featured Products</h2>
+  <p>Summer Collection New Modern Design</p>
+  <div class="pro-container" >
+
+    <div class="pro" *ngFor="let prd of product1 ; let idx=index">
+      <img [src]="prd.img" />
+      <div class="des">
+        <span class="brand">{{prd.brand}}
+        <span>
+          <ng-container [ngSwitch]="prd.quantity">
+            
+            <div *ngSwitchCase="0" class="outStock"><small> Out of stock</small></div>
+            <div *ngSwitchDefault class="inStock"><small> In stock </small></div>
+            
+          </ng-container>
+        </span>
+      </span>
+        <h5> {{prd.name}}</h5>
+        <div class="star">
+          <span *ngFor="let star of  prd.fullStars">
+            <fa-icon [icon]="fstar"></fa-icon>
+         
+          </span>
+          <span *ngFor="let star of prd.emptyStars">
+            <fa-icon [icon]="estar"></fa-icon>
+          </span>
+        </div>
+        <h4>{{prd.price|currency}}</h4>
+      </div>
+      <button id="btncard" (click)="toggleWishlist(prd, idx)">
+        <fa-icon [icon]="prd.isFavSolid ? solidHeart : regularHeart" class="fav"></fa-icon>
+      </button>
+        <button id="btncard" (click)="prdService.openProductDetails(prd.id)"><fa-icon [icon]="details" class="details"> </fa-icon> </button>
+      <button id="btncard"  (click)="prdService.ShoppingCartItemSend({ProductID: prd.id,ProductName:prd.name,Unitprice:prd.price,Img:prd.img,prdQuatity:prd.quantity,Subtotal:1*prd.price,Selectedquantity:1, inTheCart:true},idx,prd.inTheCart)"  [disabled]="prd.quantity==0"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></button>
+      <!-- <a href="#"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></a> -->
+      
+    </div>
+    </div>
+</section>
+
+
+<!-- <section id="banner" class="section-m1">
+   <h4>Repair Services </h4>
+   <h2>Up to <span>70% off</span> - All t-shirts & Accessories</h2>
+   <button class="normal">Explore more</button>
+</section> -->
+  <div class="offer">
+    <div class="small-container">
+         <div class="row">
+              <div class="col-2">
+                <img src="assets/img/exclusive.png" class="offer-img">
+
+              </div>
+              <div class="col-2">
+                <p>Exclusively available on RedStore </p>
+                <h1>smart Band 4</h1>
+                <small class="small">the Mi smart band 4 features a 39.9% larger (than Mi Band 3)
+                  AMOLED color full-touch display with adjustable brightness, so everything
+                  is clear as can be.
+                </small>
+                <a href="" class="btn">Buy Now &#8594;</a>
+              </div>
+         </div>
+    </div>
+  </div>
+<section id="product1" class="section-p1">
+    <h2 clsss="title">New Arrivals</h2>
+    <p>Summer Collection New Modern Design</p>
+    <div class="pro-container" >
+
+      <div class="pro" *ngFor="let prd of product2 ; let idx=index">
+        <img [src]="prd.img" />
+        <div class="des">
+          <span class="brand">{{prd.brand}}
+          <span>
+            <ng-container [ngSwitch]="prd.quantity">
+              
+              <div *ngSwitchCase="0" class="outStock"><small> Out of stock</small></div>
+              <div *ngSwitchDefault class="inStock"><small> In stock </small></div>
+              
+            </ng-container>
+          </span>
+        </span>
+          <h5> {{prd.name}}</h5>
+          <div class="star">
+            <span *ngFor="let star of  prd.fullStars">
+              <fa-icon [icon]="fstar"></fa-icon>
+           
+            </span>
+            <span *ngFor="let star of prd.emptyStars">
+              <fa-icon [icon]="estar"></fa-icon>
+            </span>
+          </div>
+          <h4>{{prd.price|currency}}</h4>
+        </div>
+        <button id="btncard" (click)="toggleWishlist(prd, idx)">
+          <fa-icon [icon]="prd.isFavSolid ? solidHeart : regularHeart" class="fav"></fa-icon>
+        </button>
+                <button id="btncard" (click)="prdService.openProductDetails(prd.id)"><fa-icon [icon]="details" class="details"> </fa-icon> </button>
+        <button id="btncard"  (click)="prdService.ShoppingCartItemSend({ProductID: prd.id,ProductName:prd.name,Unitprice:prd.price,Img:prd.img,prdQuatity:prd.quantity,Subtotal:1*prd.price,Selectedquantity:1, inTheCart:true},idx,prd.inTheCart)"  [disabled]="prd.quantity==0"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></button>
+        <!-- <a href="#"><fa-icon [icon]="cartIcon" class="cart"></fa-icon></a> -->
+        
+      </div>
+      </div>
+  </section>
+<section id="sm-banner" class="section-p1">
+    <div class="banner-box">
+       <h4>Crazy Deals</h4>
+       <h2>buy 1 get 1 free</h2>
+       <span>The best Classic dress is on sale at care </span>
+       <button class="white">Learn More</button>
+    </div>
+    <div class="banner-box banner-box2">
+        <h4>Spring/Summer</h4>
+        <h2>upcomming Season</h2>
+        <span>The best Classic dress is on sale at care </span>
+        <button class="white">Collections</button>
+     </div>
+</section> 
+<section id="banner3">
+    <div class="banner-box">
+        <h2>SEASONAL SALE</h2>
+        <h3>Winter Collection -50% OFF</h3>
+     </div>
+     <div class="banner-box banner-box2">
+        <h2>NEW FOOTWEAR COLLECTION </h2>
+        <h3>Spring / Summer 2023</h3>
+     </div>
+     <div class="banner-box banner-box3">
+        <h2>T-SHIRTS</h2>
+        <h3>New Trendy Prints</h3>
+     </div>
+</section> 
+
+<section id="Newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+        <h4>Sign Up For Newsletters</h4>
+        <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+    <div class="form">
+        <input type="email" name="" id="" placeholder="Your Email Address">
+        <button class="normal">Sign Up</button>
+
+    </div>
+</section>

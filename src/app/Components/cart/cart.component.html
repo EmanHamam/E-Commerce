@@ -1,0 +1,85 @@
+<ng-container *ngIf="recievedprds.length!=0">
+<section id="cart" class="section-p1">
+    <table width="100%">
+      <thead>
+          <tr>
+              <td>IMAGE</td>
+              <td>PRODUCT</td>
+              <td>PRICE</td>
+              <td>QUANTITY</td>
+              <td>SUBTOTAL</td>
+              <td>REMOVE</td>
+          </tr>
+      </thead>
+      <tbody>
+
+          <tr *ngFor="let prd of recievedprds ;let idx=index">
+              <td><img [src]="prd.Img" alt=""></td>
+              <td>{{prd.ProductName}}</td>
+              <td>{{prd.Unitprice|currency}}</td>
+              <td><input type="number" min="1" max="{{prd.prdQuatity}}"  [(ngModel)]="prd.Selectedquantity" (ngModelChange)="updateSubtotal(idx)" ></td>
+              <td>{{subtotal(idx)|currency}}</td>
+              <td><fa-icon [icon]="removeIcon" (click)="RemoveItem(idx)"></fa-icon></td>
+          </tr>
+         
+      </tbody>
+
+    </table>
+</section>
+
+<section id="cart-add" class="section-p1">
+  <div id="coupon">
+      <h3>Apply Coupon</h3>
+      <div>
+          <input type="text" placeholder="Enter your Coupon">
+          <button class="normal">Apply</button>
+      </div>
+  </div>
+
+
+  <div id="subtotal">
+    <h3>Cart Totals</h3>
+    <table>
+      <tr>
+        <td>
+          Cart Subtotal
+        </td>
+        <td>{{ calculateTotal()|currency }}</td>
+            </tr>
+      <tr>
+        <td>
+          Shipping
+        </td>
+        <td>
+          Free
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Total</strong>
+        </td>
+        <td>
+          <strong>{{calculateTotal()|currency}}</strong>
+        </td>
+      </tr>
+    </table>
+<button class="normal" routerLink="/CheckOut">Checkout</button>
+  </div>
+</section>
+
+<hr>
+</ng-container>
+<ng-container *ngIf="recievedprds.length==0">
+  <div class="d-flex justify-content-center align-items-center card" style="height: 90vh;">
+  <div class="card text-center" style="max-width: 1000px;">
+    <img class="card-img-center img-fluid"  src="assets/img/EmptyCart.png" alt="">
+    <div class="card-body">
+
+      <h5 class="card-title">Your Cart is Empty!</h5>
+      <p class="card-text">Add items to it Now...</p>
+      <button id="btnCard" class="btn btn-primary normal" routerLink="/Products"> Shop Now</button>
+    </div>
+   
+  </div>
+</div>
+</ng-container>

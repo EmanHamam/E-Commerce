@@ -1,0 +1,23 @@
+<section id="cart" class="section-p1">
+    <table width="100%">
+      <thead>
+          <tr>
+              <td>PRODUCT</td>
+              <td>PRICE</td>
+              <td>IMAGE</td>
+              <td>REMOVE</td>
+          </tr>
+      </thead>
+      <tbody>
+
+          <tr *ngFor="let prd of recievedprds ;let idx=index">
+              <td>{{prd.ProductName}}</td>
+              <td>{{prd.Unitprice|currency}}</td>
+              <td><img [src]="prd.Img" alt=""></td>
+              <td><fa-icon [icon]="removeIcon" (click)="RemoveItem(idx)"></fa-icon></td>
+          </tr>
+         
+      </tbody>
+
+    </table>
+</section>

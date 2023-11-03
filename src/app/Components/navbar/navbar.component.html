@@ -1,0 +1,118 @@
+<section id="header">
+  <a class="navbar-brand" href="#"
+    ><img
+      src="{{ store.logo }}"
+      alt="Centered Image"
+      class="logo"
+      width="100"
+      height="50"
+    />
+  </a>
+
+  <div>
+    <ul id="navbar">
+      <li>
+        <a aria-current="page" routerLink="/Home" routerLinkActive="active"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a aria-current="page" routerLink="/Products" routerLinkActive="active"
+          >Products</a
+        >
+      </li>
+      <li>
+        <a aria-current="page" routerLink="/AboutUs" routerLinkActive="active"
+          >About</a
+        >
+      </li>
+      <li>
+        <a aria-current="page" routerLink="/ContactUs" routerLinkActive="active"
+          >Contac Us</a
+        >
+      </li>
+
+      <li>
+        <a
+          title="Your Account"
+          aria-current="page"
+          routerLink="/Account"
+          routerLinkActive="active"
+          ><span><fa-icon [icon]="user"></fa-icon></span>
+        </a>
+      </li>
+      <li>
+        <a
+          title="Cart"
+          aria-current="page"
+          routerLink="/Cart"
+          routerLinkActive="active"
+          ><span><fa-icon [icon]="shoppingBag" class="cart"></fa-icon></span>
+          <span
+            *ngIf="cartService.getCartCount() != 0"
+            class="position-absolute top-0 start-90 p-1 translate-middle badge rounded-pill badge-notification bg-danger"
+          >
+            {{ cartService.getCartCount() }}
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          title="Wishlist"
+          aria-current="page"
+          routerLink="/Wishlist"
+          routerLinkActive="active"
+          ><span><fa-icon [icon]="heart" class="cart"></fa-icon></span>
+          <span
+            *ngIf="wishlistService.getWishlistCount() != 0"
+            class="position-absolute top-0 start-90 p-1 translate-middle badge rounded-circle bg-danger"
+          >
+            {{ wishlistService.getWishlistCount() }}
+          </span>
+        </a>
+      </li>
+      <a href="#" id="close"
+        ><fa-icon
+          [icon]="close"
+          onclick="if(document.getElementById('close').addEventListener('click',()=>{
+        nav.classList.remove('active');
+    }))"
+        ></fa-icon
+      ></a>
+    </ul>
+  </div>
+  <div id="mobile">
+    <a
+      title="Cart"
+      aria-current="page"
+      routerLink="/Cart"
+      routerLinkActive="active"
+      ><span><fa-icon [icon]="shoppingBag" class="cart"></fa-icon></span>
+      <span
+        *ngIf="cartService.getCartCount() != 0"
+        class="position-absolute top-0 start-90 p-1 translate-middle badge rounded-pill badge-notification bg-danger"
+      >
+        {{ cartService.getCartCount() }}
+      </span>
+    </a>
+    <a
+      title="Wishlist"
+      aria-current="page"
+      routerLink="/Wishlist"
+      routerLinkActive="active"
+      ><span><fa-icon [icon]="heart" class="cart"></fa-icon></span>
+      <span
+        *ngIf="wishlistService.getWishlistCount() != 0"
+        class="position-absolute top-0 start-90 p-1 translate-middle badge rounded-circle bg-danger"
+      >
+        {{ wishlistService.getWishlistCount() }}
+      </span>
+    </a>
+   <a>
+    <fa-icon
+      id="nav"
+      [icon]="faOutdent"
+      (click)="toggleNav()"
+    ></fa-icon></a>
+  </div>
+</section>
