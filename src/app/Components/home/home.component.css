@@ -76,7 +76,7 @@ body{
     display: none;
 } 
 #hero{
-    background-image: url("../../../assets/img/hero4.png");
+    background-image: url("../../../assets/hero4.png");
     height: 100vh;
     width: 100%;
     background-size: cover;
